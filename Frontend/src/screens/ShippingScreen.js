@@ -2,7 +2,7 @@ import { Updateuser } from "../Api.js";
 import { Setuserlo } from "../localStorage.js";
 import { getuser } from "../localStorage.js";
 import { hideloading, showloading } from "../Utils.js";
-import { clearuser } from "../localStorage.js";
+import { clearuser, getShipping } from "../localStorage.js";
 // import { hideloading } from "../Utils.js";
 export const ShippingScreen = {
   after_render: () => {
@@ -41,10 +41,10 @@ export const ShippingScreen = {
     if (!nombre) {
       document.location.hash = "/";
     }
-
+    const { address, city, postalCode, country } = getShipping();
     return `
  <div class="form-container">
-  <form id="profile-form">
+  <form id="shipping-form">
     <ul class="form-items">
      <li><h3>User Profile</h3></li>
      <li>

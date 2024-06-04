@@ -11,6 +11,7 @@ export const clearuser = () => {
   // console.log("aca estoy");
   localStorage.removeItem("Useritems");
 };
+export const getShipping = () => {};
 export const getuser = () => {
   const useritems = localStorage.getItem("Useritems")
     ? JSON.parse(localStorage.getItem("Useritems"))
