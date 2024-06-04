@@ -1,4 +1,4 @@
-import { getCartItems } from "./localStorage";
+//import { getCartItems } from "./localStorage";
 
 export const parseRequestUrl = () => {
   // //     document.location: Se refiere al objeto Location asociado al
@@ -31,10 +31,19 @@ export const showloading = () => {
 export const hideloading = () => {
   document.getElementById("loading-overlay").classList.remove("active");
 };
-export const redirecUser = () => {
-  if (getCartItems().length !== 0) {
-    document.location.hash = "/shipping";
+export const redirecUser = (pp) => {
+  //console.log(pp.length);//
+  if (Array.isArray(pp)) {
+    console.log(pp.length);
+    pp.length !== 0
+      ? (document.location.hash = "/shipping")
+      : (document.location.hash = "/");
   } else {
-    document.location.hash = "/";
+    console.error("Expected an array but received:", pp);
   }
+  // if (getCartItems().length !== 0) {
+  //   document.location.hash = "/shipping";
+  // } else {
+  //   document.location.hash = "/";
+  // }
 };

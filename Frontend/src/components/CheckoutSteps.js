@@ -1,5 +1,7 @@
 export const CheckoutSteps = {
   render: (props) => {
+    //el props sera un objeto que servira para llevar datos del padre al hijo
+    //ojo {props={step1:true ,step2:true}}
     return `
 <div class="checkout-steps">
 <div class="${props.step1 ? "active" : ""}">Signin</div>

@@ -2,7 +2,7 @@ import { RegisterUser } from "../Api.js";
 import { Setuserlo } from "../localStorage.js";
 import { getuser } from "../localStorage.js";
 import { hideloading, redirecUser, showloading } from "../Utils.js";
-
+import { getCartItems } from "../localStorage.js";
 // import { hideloading } from "../Utils.js";
 export const RegisterScreen = {
   after_render: () => {
@@ -22,7 +22,7 @@ export const RegisterScreen = {
           console.log(data);
           Setuserlo(data);
           hideloading();
-          redirecUser();
+          redirecUser(getCartItems());
           // document.location.hash = "/";
         }
       });

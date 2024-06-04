@@ -10,6 +10,7 @@ import { SigninScreen } from "./screens/SigninScreen.js";
 import { Header } from "./components/Header.js";
 import { RegisterScreen } from "./screens/RegisterScreen.js";
 import { profile } from "./screens/Profile.js";
+import { ShippingScreen } from "./screens/ShippingScreen.js";
 const routes = {
   "/": Homeproduct,
   "/product/:id": Productscreens,
@@ -18,6 +19,7 @@ const routes = {
   "/signin": SigninScreen,
   "/register": RegisterScreen,
   "/profile": profile,
+  "/shipping": ShippingScreen,
 };
 //http://127.0.0.1:5500/Frontend/src/index.html#/product/1
 const router = async () => {
@@ -29,7 +31,7 @@ const router = async () => {
     (request.resource ? `/${request.resource}` : "/") +
     (request.id ? "/:id" : "") +
     (request.verb ? `/${request.verb}` : "");
-
+  //arriba devuelve "/cart/id" o "/cart"
   console.log("dsdsd->" + parseUrl);
   const screen = routes[parseUrl] ? routes[parseUrl] : Error404screen;
   //====>/product/:id ? product/:id

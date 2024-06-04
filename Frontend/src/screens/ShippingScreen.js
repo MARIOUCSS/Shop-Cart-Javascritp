@@ -1,71 +1,60 @@
-import { Updateuser } from "../Api.js";
-import { Setuserlo } from "../localStorage.js";
+import { setShipping } from "../localStorage.js";
 import { getuser } from "../localStorage.js";
-import { hideloading, showloading } from "../Utils.js";
-import { clearuser, getShipping } from "../localStorage.js";
+
+import { getShipping } from "../localStorage.js";
+import { CheckoutSteps } from "../components/CheckoutSteps.js";
 // import { hideloading } from "../Utils.js";
 export const ShippingScreen = {
   after_render: () => {
-    document.getElementById("signout-button").addEventListener("click", (e) => {
-      e.preventDefault();
-      clearuser();
-      document.location.hash = "/";
-    });
-    const { token } = getuser();
-
     document
-      .getElementById("profile-form")
+      .getElementById("shipping-form")
       .addEventListener("submit", async (e) => {
         e.preventDefault();
-        showloading();
-        const data = await Updateuser({
-          name: document.getElementById("name").value,
-          email: document.getElementById("email").value,
-          password: document.getElementById("password").value,
-          token: token,
+        setShipping({
+          address: document.getElementById("address").value,
+          city: document.getElementById("city").value,
+          postalCode: document.getElementById("PostalCode").value,
+          country: document.getElementById("Country").value,
         });
-        if (data.error) {
-          alert(data.error);
-        } else {
-          console.log("paso");
-          console.log(data);
-          Setuserlo(data);
-          hideloading();
-          document.location.hash = "/";
-        }
+        document.location.hash = "/payment";
       });
   },
   render: () => {
     // En esta parte si esta logueado no se podra acceder otra vez al login
-    const { nombre, email } = getuser();
+    const { nombre } = getuser();
     if (!nombre) {
       document.location.hash = "/";
     }
     const { address, city, postalCode, country } = getShipping();
+    //props={setp:true} = props.step=true
     return `
+    
+    ${CheckoutSteps.render({ step1: true, step2: true })}
  <div class="form-container">
   <form id="shipping-form">
     <ul class="form-items">
-     <li><h3>User Profile</h3></li>
+     <li><h3>Shipping</h3></li>
      <li>
-      <label for="name">Name</label>
-      <input type="name" name="name" id="name" value="${nombre}">
+      <label for="address">Address</label>
+      <input type="text" name="address" id="address" value="${address}">
      </li>
-    <li>
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" value="${email}">
+     <li>
+     <label for="city">City</label>
+     <input type="text" name="city" id="city" value="${city}">
     </li>
     <li>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" >
+     <label for="Postal code">Postal Code</label>
+     <input type="text" name="postalcode" id="PostalCode" value="${postalCode}">
+    </li>
+    <li>
+     <label for="Country">Country</label>
+     <input type="text" name="postalcode" id="Country" value="${country}">
     </li>
  
     <li>
-     <button type="submit" class="primary">Update</button>
+     <button type="submit" class="primary">Continue</button>
     </li>
-    <li>
-     <button type="submit"  id="signout-button">Sign Out</button>
-    </li>
+   
     </ul>
   </form>
  </div>
