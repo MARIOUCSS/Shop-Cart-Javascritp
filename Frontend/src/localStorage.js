@@ -12,6 +12,31 @@ export const clearuser = () => {
   // console.log("aca estoy");
   localStorage.removeItem("Useritems");
 };
+
+////
+export const getPaymentShipping = () => {
+  const shipping = localStorage.getItem("payment")
+    ? JSON.parse(localStorage.getItem("payment"))
+    : {
+        address: "",
+        city: "",
+        postalCode: "",
+        country: "",
+      };
+  return shipping;
+};
+export const setPaymentShipping = (data) => {
+  localStorage.setItem(
+    "payment",
+    JSON.stringify({
+      address: data.addres,
+      city: data.city,
+      postalCode: data.postalCode,
+      country: data.country,
+    })
+  );
+};
+///
 export const getShipping = () => {
   const shipping = localStorage.getItem("shipping")
     ? JSON.parse(localStorage.getItem("shipping"))

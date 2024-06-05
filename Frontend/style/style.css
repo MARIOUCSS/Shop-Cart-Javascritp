@@ -315,3 +315,25 @@ z-index: 1000;: Esta propiedad establece el nivel de apilamiento del elemento.
 }
 
 /*Checkout*/
+
+.checkout-steps {
+    display: flex;
+
+    justify-content: space-between;
+    width: 40rem;
+    margin: 1rem auto;
+    /*el primero arriba y abajo el segundo centra div */
+}
+
+.checkout-steps>div {
+    color: #c0c0c0;
+    border-top: 0.3rem #c0c0c0 solid;
+    flex: 1 1;
+    padding-top: 1rem;
+}
+
+/* <div class="checkout-steps">
+    <div class="${props.step1 ? "active" : ""}">Signin</div>*/
+.checkout-steps>div.active {
+    color: #f08000;
+}
