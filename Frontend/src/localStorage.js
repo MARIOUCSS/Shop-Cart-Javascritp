@@ -59,6 +59,18 @@ export const setShipping = (data) => {
     })
   );
 };
+
+export const getPayment = () => {
+  const payment = localStorage.getItem("payment")
+    ? JSON.parse(localStorage.getItem("payment"))
+    : {
+        paymentMethod: "paypal",
+      };
+  return payment;
+};
+export const setPayment = ({ paymentMethod = "paypal" }) => {
+  localStorage.setItem("payment", JSON.stringify({ paymentMethod }));
+};
 export const getuser = () => {
   const useritems = localStorage.getItem("Useritems")
     ? JSON.parse(localStorage.getItem("Useritems"))

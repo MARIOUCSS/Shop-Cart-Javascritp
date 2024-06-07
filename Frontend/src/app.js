@@ -11,6 +11,8 @@ import { Header } from "./components/Header.js";
 import { RegisterScreen } from "./screens/RegisterScreen.js";
 import { profile } from "./screens/Profile.js";
 import { ShippingScreen } from "./screens/ShippingScreen.js";
+import { PaymentScreen } from "./screens/PaymentScreeen.js";
+import { PlaceOrderScreen } from "./screens/PlaceOrderScreen.js";
 const routes = {
   "/": Homeproduct,
   "/product/:id": Productscreens,
@@ -20,6 +22,8 @@ const routes = {
   "/register": RegisterScreen,
   "/profile": profile,
   "/shipping": ShippingScreen,
+  "/payment": PaymentScreen,
+  "/placeorder": PlaceOrderScreen,
 };
 //http://127.0.0.1:5500/Frontend/src/index.html#/product/1
 const router = async () => {
